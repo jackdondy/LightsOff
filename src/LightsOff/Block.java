@@ -19,6 +19,8 @@ class Block extends JButton {
     protected BlockState state = BlockState.Off;
     //鼠标是否悬停在该按钮上
     boolean hover = false;
+    //是否展示提示
+    boolean showTip = false;
 
     Block(){
         addMouseListener(new innerWindowListener());
@@ -71,6 +73,13 @@ class Block extends JButton {
         g2d.setPaint(new GradientPaint(0, h, new Color(0, 0, 0, 53),
                 h, 0, new Color(255, 255, 255, 126)));
         g2d.drawRoundRect(1, 1, h - 2, h - 2, arc, arc);
+
+        //展示提示
+        if(showTip){
+            g2d.setPaint(new GradientPaint((float)h/3, (float)h/3, Main.OnC2,
+                    (float)h/2, (float)h/2, Main.OnC1, true));
+            g2d.fillOval(h/3, h/3, h/3, h/3);
+        }
         g2d.dispose();
         super.paintComponent(g);
     }

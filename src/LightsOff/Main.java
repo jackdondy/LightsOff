@@ -2,13 +2,12 @@ package LightsOff;
 
 import javax.swing.*;
 import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
+import java.util.Arrays;
+import java.util.EventListener;
 import java.util.Random;
 
 public class Main extends JFrame {
@@ -17,7 +16,8 @@ public class Main extends JFrame {
     图片路径推荐使用：getClass().getResource(图片路径);
 
     public URL getResource(String name)
-    查找带有给定名称的资源。查找与给定类相关的资源的规则是通过定义类的 class loader 实现的。此方法委托给此对象的类加载器。如果此对象通过引导类加载器加载，则此方法将委托给 ClassLoader.getSystemResource(java.lang.String)。
+    查找带有给定名称的资源。查找与给定类相关的资源的规则是通过定义类的 class loader 实现的。此方法委托给此对象的类加载器。
+    如果此对象通过引导类加载器加载，则此方法将委托给 ClassLoader.getSystemResource(java.lang.String)。
     在委托前，使用下面的算法从给定的资源名构造一个绝对资源名：
 
     如果 name 以 '/' ('\u002f') 开始，则绝对资源名是'/' 后面的name 的一部分。
@@ -48,6 +48,10 @@ public class Main extends JFrame {
     static Icon iconMinus = new ImageIcon(Main.class.getResource("/resources/minus.png"));
     static Icon iconMinus2 = new ImageIcon(Main.class.getResource("/resources/minus2.png"));
     static Icon iconShot = new ImageIcon(Main.class.getResource("/resources/shot.png"));
+    static Icon iconTipOff = new ImageIcon(Main.class.getResource("/resources/tipOff.png"));
+    static Icon iconTipOff2 = new ImageIcon(Main.class.getResource("/resources/tipOff2.png"));
+    static Icon iconTipOn = new ImageIcon(Main.class.getResource("/resources/tipOn.png"));
+    static Icon iconTipOn2 = new ImageIcon(Main.class.getResource("/resources/tipOn2.png"));
 
     //浅黄：0xF6FD8B，浅蓝：BFE3ED
     static Color defaultOnC1 = new Color(246,253,139), defaultOnC2 = new Color(87, 85, 0),
@@ -59,19 +63,25 @@ public class Main extends JFrame {
     static Color OnC_darker, OnC2_darker, OffC_brighter;
 
     static final int defaultSize = 5, defaultMaxSize = 10, defaultMinSize = 2;
-    int rowSize = defaultSize, coloumnSize = defaultSize;
+    int rowSize = defaultSize, columnSize = defaultSize;
     protected enum LevelMode{
-        Random, Fixed, Increase
+        Random, Fixed, Increase, Test
     }
     LevelMode levelMode = LevelMode.Increase;
     int level = 1;
 
-    static MainPanel mainPanel;
+    MainPanel mainPanel;
     Block[][] blocks = null;
-    //当前的地图
-    boolean[][] tempMap = null;
 
-    JDialog jd = null;
+    //当前的初始地图,以及产生地图过程的点击
+    boolean[][] mapPlate = null, clickMapPlate = null;
+    //当前的点击情况，包括产生地图过程中的点击
+    boolean[][] clickMap = null;
+
+    boolean isTipOn = false;
+    Tip tipModel = null;
+
+//    JDialog jd = null;
 
     static Font defaultfont = new Font("Times New Roman" , Font.BOLD , 16 );
 
@@ -83,6 +93,7 @@ public class Main extends JFrame {
     JRadioButtonMenuItem jbIncreaseMode = new JRadioButtonMenuItem("Increase Level(等级递增)", true);
     JRadioButtonMenuItem jbFixedMode = new JRadioButtonMenuItem("Fixed Level(固定等级)", false);
     JRadioButtonMenuItem jbRandomMode = new JRadioButtonMenuItem("Random Level(随机等级)", false);
+    JRadioButtonMenuItem jbTestMode = new JRadioButtonMenuItem("Test(测试模式)", false);
     //设置行与列数
     JMenu jmSize = new JMenu("Size(大小)");
     //设置前景色
@@ -105,13 +116,17 @@ public class Main extends JFrame {
     JLabel jlLevel = new JLabel("Level:");
     JButton jbLevelUp = new JButton(iconAdd);
     JButton jbLevelDown = new JButton(iconMinus);
+    //提示 按钮
+    JButton jbTips = new JButton(iconTipOff);
     //关于Lights Off
     JButton jbAbout = new JButton(iconSmallLogo);
 
     public Main(){
-        setLevel(1);
-
         setLayout(new BorderLayout());
+
+
+        add(mainPanel = new MainPanel(), BorderLayout.CENTER);
+        setLevel(1);
 
         //将jm整个赋给jmb，把jmb整个加到工具栏
         jtb.add(jmb);
@@ -140,15 +155,11 @@ public class Main extends JFrame {
         jbIncreaseMode.addActionListener(actionEvent -> {
             levelMode = LevelMode.Increase;
             setLevel(1);    //从1开始
-            jbLevelUp.setEnabled(true);
-            jbLevelDown.setEnabled(true);
         });
 
         jbFixedMode.addActionListener(actionEvent -> {
             levelMode = LevelMode.Fixed;
             setLevel(1);
-            jbLevelUp.setEnabled(true);
-            jbLevelDown.setEnabled(true);
         });
 
         jbRandomMode.addActionListener(actionEvent -> {
@@ -156,15 +167,26 @@ public class Main extends JFrame {
             jlLevel.setText("Level:Random");
             jbLevelUp.setEnabled(false);
             jbLevelDown.setEnabled(false);
+            mainPanel.newMap(0);
+        });
+
+        jbTestMode.addActionListener(actionEvent -> {
+            levelMode = LevelMode.Test;
+            jlLevel.setText("Test");
+            jbLevelUp.setEnabled(false);
+            jbLevelDown.setEnabled(false);
+            mainPanel.newMap(0);
         });
 
         jmMode.add(jbIncreaseMode);
         jmMode.add(jbFixedMode);
         jmMode.add(jbRandomMode);
+        jmMode.add(jbTestMode);
         ButtonGroup buttonGroup = new ButtonGroup();
         buttonGroup.add(jbIncreaseMode);
         buttonGroup.add(jbFixedMode);
         buttonGroup.add(jbRandomMode);
+        buttonGroup.add(jbTestMode);
 
         //大小更改菜单
         jm.add(jmSize);
@@ -282,12 +304,17 @@ public class Main extends JFrame {
         jbReplay.setBorderPainted(false);
         jbReplay.setRolloverIcon(iconReplay2);
         jbReplay.addActionListener(actionEvent -> {
+            //从mapPlate恢复blocks
             for(int row = 0, column; row < rowSize; row++){
-                for(column = 0; column < coloumnSize; column++){
-                    if(tempMap[row][column] != blocks[row][column].isOn())
+                for(column = 0; column < columnSize; column++){
+                    if(mapPlate[row][column] != blocks[row][column].isOn())
                         blocks[row][column].turn();
                 }
             }
+            //同时设置clickMap
+            clickMap = clickMapPlate.clone();
+
+            tipsOff();
         });
         jtb.add(jbReplay);
 
@@ -328,6 +355,26 @@ public class Main extends JFrame {
         jbLevelUp.addActionListener(actionEvent -> setLevel(level + 1));
         jbLevelUp.setRolloverIcon(iconAdd2);
         jtb.add(jbLevelUp);
+
+        //分隔
+        jtb.addSeparator(new Dimension(iconPreferSize * 2, iconPreferSize));
+
+        //提示
+        jbTips.setPreferredSize(new Dimension(iconPreferSize, iconPreferSize));
+        jbTips.setToolTipText("Tips(Click <T>)/提示(点击T键)");
+        jbTips.setBorderPainted(false);
+        jbTips.addActionListener(actionEvent -> {
+            if(isTipOn){
+                tipsOff();
+            }else{
+                tipsOn();
+            }
+        });
+        //监听键盘的 T
+        jbTips.registerKeyboardAction(actionEvent -> jbTips.doClick(), KeyStroke.getKeyStroke("T"),
+                JComponent.WHEN_IN_FOCUSED_WINDOW);
+        jbTips.setRolloverIcon(iconTipOff2);
+        jtb.add(jbTips);
 
         //分隔
         jtb.addSeparator(new Dimension(iconPreferSize * 2, iconPreferSize));
@@ -373,22 +420,22 @@ public class Main extends JFrame {
 //        jtb.setPreferredSize(new Dimension(500, 50));
         add(jtb, BorderLayout.NORTH);
 
-        add(mainPanel = new MainPanel(), BorderLayout.CENTER);
-
         setFgC(FgC);
         setBgC(BgC);
+
+        setIconImage(iconLogo.getImage());
+        setTitle("Lights Off");
+        setLocationRelativeTo(null);      //设置登陆框出现的位置，null表示出现在屏幕正中央
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        pack();
+        setVisible(true);
+        mainPanel.repaint();
     }
 
     public static void main(String[] args){
-        JFrame frame = new Main();
-        frame.setIconImage(iconLogo.getImage());
-        frame.setTitle("Lights Off");
-        frame.setLocationRelativeTo(null);      //设置登陆框出现的位置，null表示出现在屏幕正中央
-        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-        mainPanel.repaint();
+        new Main();
     }
+
     //设置主题前景色（字体颜色）
     public void setFgC(Color color){
         FgC = color;
@@ -400,6 +447,7 @@ public class Main extends JFrame {
         jbIncreaseMode.setForeground(color);
         jbFixedMode.setForeground(color);
         jbRandomMode.setForeground(color);
+        jbTestMode.setForeground(color);
 
         jmFgC.setForeground(color);
         FgOther.setForeground(color);
@@ -429,6 +477,7 @@ public class Main extends JFrame {
         jbIncreaseMode.setBackground(color);
         jbFixedMode.setBackground(color);
         jbRandomMode.setBackground(color);
+        jbTestMode.setBackground(color);
 
         jmFgC.setBackground(color);
         FgOther.setBackground(color);
@@ -447,13 +496,13 @@ public class Main extends JFrame {
         jbLevelDown.setBackground(color);
         jlLevel.setBackground(color);
         jbAbout.setBackground(color);
+        jbTips.setBackground(color);
+
         mainPanel.setBackground(color);
     }
 
     //一个计时消失的对话框
-    public void showTimeDialog(int sec, JFrame parent, String str){
-
-    }
+//    public void showTimeDialog(int sec, JFrame parent, String str)
 
     //设置Block开状态下的颜色（渐变）
     public void setOnC(Color onC, Color onC2) {
@@ -462,7 +511,7 @@ public class Main extends JFrame {
         OnC_darker = onC.darker();
         OnC2_darker = onC2.darker();
         for(int i = 0, j; i < rowSize; i++){
-            for(j = 0; j < coloumnSize; j++){
+            for(j = 0; j < columnSize; j++){
                 blocks[i][j].repaint();
             }
         }
@@ -473,7 +522,7 @@ public class Main extends JFrame {
         OffC = offC;
         OffC_brighter = offC.brighter();
         for(int i = 0, j; i < rowSize; i++){
-            for(j = 0; j < coloumnSize; j++){
+            for(j = 0; j < columnSize; j++){
                 blocks[i][j].repaint();
             }
         }
@@ -541,42 +590,86 @@ public class Main extends JFrame {
         }
     }
 
+    protected void tipsOff(){
+        isTipOn = false;
+        jbTips.setIcon(iconTipOff);
+        jbTips.setRolloverIcon(iconTipOff2);
+        for(int j, i = 0; i < rowSize; i++){
+            for(j = 0; j < columnSize; j++){
+                blocks[i][j].showTip = false;
+            }
+        }
+        repaint();
+    }
+
+    protected void tipsOn(){
+        isTipOn = true;
+        jbTips.setIcon(iconTipOn);
+        jbTips.setRolloverIcon(iconTipOn2);
+        System.out.println("clickMap" + Arrays.deepToString(clickMap));
+        //获取Tip，然后设置块
+        boolean[][] tipMap = tipModel.getTip(clickMap);
+        for(int j, i = 0; i < rowSize; i++){
+            System.out.println(Arrays.toString(tipMap[i]));
+            for(j = 0; j < columnSize; j++){
+                blocks[i][j].showTip = tipMap[i][j];
+            }
+        }
+        repaint();
+    }
+
     //先判断该块是否存在，然后转变状态
     //ensure the Block is exists, then turn the Block.
     protected void SafeTurn(int _row, int _column){
-        if(_column < 0 || _column > coloumnSize - 1)   return;
+        if(_column < 0 || _column > columnSize - 1)   return;
         if(_row < 0 || _row > rowSize - 1)     return;
         blocks[_row][_column].turn();
     }
 
-    //当Mode不为Random时，调用该函数
-    protected void setLevel(int newlevel){
-        //level的范围是1到size，size取行和列的平均值
-        //newlevel不合法
-        if(newlevel < 1 || newlevel * 2 > rowSize + coloumnSize) return;
-        else level = newlevel;
-
-        jlLevel.setText("Level:" + level);
-        System.out.println("Level:" + level);
-        if(mainPanel == null)   return;
-        mainPanel.newMap(0);
+    protected void Click(int _row, int _column){
+        blocks[_row][_column].turn();
+        SafeTurn(_row + 1, _column);
+        SafeTurn(_row - 1, _column);
+        SafeTurn(_row, _column + 1);
+        SafeTurn(_row, _column - 1);
+        //同时修改clickMap[_row][_column]
+        clickMap[_row][_column] = !clickMap[_row][_column];
     }
 
+    //当Mode不为Random或Test时，调用该函数
+    protected void setLevel(int newLevel){
+        //level的范围是1到size，size取行和列的平均值
+        //newlevel不合法
+        if((newLevel < 1) || (newLevel * (newLevel + 1) / 2 > rowSize * columnSize))    return;
+
+        level = newLevel;
+        jlLevel.setText("Level:" + level);
+        System.out.println("Level:" + level);
+        jbLevelUp.setEnabled(true);
+        jbLevelDown.setEnabled(true);
+
+        mainPanel.newMap(0);
+    }
+    //主面板是矩阵
     protected class MainPanel extends JPanel{
         MainPanel(){
-            tempMap = new boolean[rowSize][coloumnSize];
-            blocks = new Block[rowSize][coloumnSize];
+            //实例化Tip
+            tipModel = new Tip(rowSize, columnSize);
+
+            blocks = new Block[rowSize][columnSize];
+            EventListener listener;
             for(int i = 0; i < rowSize; i++){
-                for(int j = 0; j < coloumnSize; j++){
+                for(int j = 0; j < columnSize; j++){
                     blocks[i][j] = new Block();
-                    blocks[i][j].addActionListener(new BlockListener(i, j));
+                    listener = new BlockListener(i, j);
+                    blocks[i][j].addActionListener((ActionListener)listener);
+                    blocks[i][j].addMouseListener((MouseAdapter)listener);
                     add(blocks[i][j]);
                 }
             }
-            setLevel(1);
             newMap(0);
-            setLayout(new GridLayout(rowSize, coloumnSize, 2, 2));
-            setPreferredSize(new Dimension(coloumnSize * 80,rowSize * 80));
+            setLayout(new GridLayout(rowSize, columnSize, 2, 2));
+            setPreferredSize(new Dimension(columnSize * 80,rowSize * 80));
             setOnC(OnC1, OnC2);
             setOffC(OffC);
             repaint();
@@ -589,16 +682,19 @@ public class Main extends JFrame {
         //监听MainPanel的大小变化，并将内部的blocks调整为正方形
         @Override
         public void repaint(){
-            int blockSize = Math.min(getHeight() / rowSize, getWidth() / coloumnSize);
+            int blockSize = Math.min(getHeight() / rowSize, getWidth() / columnSize);
 //            setLocation();    //setLocation会报错显示栈溢出
 //            setSize();
-            setBounds(getX() + (getWidth() - blockSize * coloumnSize) / 2,
+            setBounds(getX() + (getWidth() - blockSize * columnSize) / 2,
                     getY() + (getHeight() - blockSize * rowSize) / 2,
-                    blockSize * coloumnSize, blockSize * rowSize);
+                    blockSize * columnSize, blockSize * rowSize);
         }
 
         //产生新的地图
         protected void newMap(int failTimes){
+            //关闭tip
+            tipsOff();
+
             //重试5次还不成功，则提示并返回
             if(failTimes > 4){
                 JOptionPane.showMessageDialog(mainPanel, "Failed to generate a new Map!",
@@ -607,14 +703,20 @@ public class Main extends JFrame {
             }
             //开始前，将所有灯关一遍
             for(int column, row = 0; row < rowSize; row++){
-                for(column = 0; column < coloumnSize; column++){
+                for(column = 0; column < columnSize; column++){
                     blocks[row][column].turnOff();
                 }
             }
+            mapPlate = new boolean[rowSize][columnSize];    //默认为全false
+            clickMapPlate = new boolean[rowSize][columnSize];
+            clickMap = new boolean[rowSize][columnSize];
+
             int steps = 0;
-            Random random = new Random(System.currentTimeMillis());
-            //首先，计算所需的最短步数
+            Random random = new Random(System.currentTimeMillis() + failTimes);
+            //首先，计算点击数step
             switch (levelMode){
+                case Test:
+                    return ;
                 case Increase:
                 case Fixed:
                     /*
@@ -625,61 +727,68 @@ public class Main extends JFrame {
                         4:  7 to 10
                         5:  11 to 15
                         ...
-                        n(n <= size):  n(n-1)/2 + 1  to n(n+1)/2
+                        n:  n(n-1)/2 + 1  to n(n+1)/2
+                        n <= (row + column) / 2
                      */
-                    if(level < 0)   return;
+                    if(level < 0 || level * (level + 1) / 2 > rowSize * columnSize)   return;
                     steps = level * (level - 1) / 2 + 1 + random.nextInt(level);
                     break;
                 case Random:
                     //随机步数：范围是 1 至 size * size
-                    steps = 1 + random.nextInt(rowSize * coloumnSize);
+                    steps = 1 + random.nextInt(rowSize * columnSize);
                     break;
             }
 
             System.out.println("Steps:" + steps);
-            //根据步数，转换若干次灯，保证相邻两步不会点到同一盏灯，否则难度降低
-            int lastRow = -1, lastColumn = -1;
-            for(int i, row, column; steps > 0; steps--){
-                //转换第i盏灯，同时周围的灯转换状态
-                i = random.nextInt(rowSize * coloumnSize) + 1;
-                for(row = 0; row < rowSize; row ++){
-                    for(column = 0; column < coloumnSize; column++){
-                        i--;
-                        if(i == 0){
-                            if(row == lastRow && column == lastColumn){
-                                steps++;//又选到了这盏灯，该步作废，步数加一，
-                                break;
-                            }
-                            lastRow = row;
-                            lastColumn = column;
-                            blocks[row][column].turn();
-                            SafeTurn(row - 1, column);
-                            SafeTurn(row + 1, column);
-                            SafeTurn(row, column + 1);
-                            SafeTurn(row, column - 1);
-                            break;
-                        }
-                    }
-                    if(i == 0)      break;
+
+            //首先产生clickMapPlate,然后生成mapPlate
+
+            //clickMapPlate中前step个为true
+            for(int i = 0; i < steps; i++)
+                clickMapPlate[i / columnSize][i % columnSize] = true;
+            //打印clickMapPlate
+            System.out.println("clickMap:" + Arrays.deepToString(clickMapPlate));
+            //随机交换
+            boolean b;
+            for(int i = 0, index; i < rowSize * columnSize; i++){
+                index = random.nextInt(rowSize * columnSize);   //i与index交换
+                b = clickMapPlate[i / columnSize][i % columnSize];
+                clickMapPlate[i / columnSize][i % columnSize] = clickMapPlate[index / columnSize][index % columnSize];
+                clickMapPlate[index / columnSize][index % columnSize] = b;
+                //这种方式，如果i与index相同，则有一半几率出错，因为第i项经过三步后一定为false
+//                clickMapPlate[i / columnSize][i % columnSize] ^= clickMapPlate[index / columnSize][index % columnSize];
+//                clickMapPlate[index / columnSize][index % columnSize] ^= clickMapPlate[i / columnSize][i % columnSize];
+//                clickMapPlate[i / columnSize][i % columnSize] ^= clickMapPlate[index / columnSize][index % columnSize];
+            }
+            //打印clickMapPlate
+            System.out.println("clickMap:" + Arrays.deepToString(clickMapPlate));
+            //根据clickMapPlate点击blocks
+            for(int i = 0, j; i < rowSize; i++){
+                for(j = 0; j < columnSize; j++){
+                    if(clickMapPlate[i][j]) Click(i, j);
                 }
             }
             boolean isValid = false;
-            //最后，将blocks记录到map，以便从头开始
-            for(int row = 0, column; row < rowSize; row++){
-                for(column = 0; column < coloumnSize; column++){
-                    tempMap[row][column] = blocks[row][column].isOn();
-                    if(blocks[row][column].isOn())  isValid = true;
+            //生成mapPlate
+            for(int i = 0, j; i < rowSize; i++){
+                for(j = 0; j < columnSize; j++){
+                    if(blocks[i][j].isOn()){
+                        mapPlate[i][j] = true;
+                        isValid = true;
+                    }
                 }
             }
-            //如果产生的地图为空，重新产生(该情况可能发生)
-            if(!isValid)    newMap(failTimes + 1);
-        }
 
+            //如果刚好点击地图为一个循环组合
+            if(!isValid){
+                newMap(failTimes + 1);
+            }
+        }
     }
 
     //该类监听一个Block
     //a BlockListener listens to the action of a Block
-    protected class BlockListener implements ActionListener {
+    protected class BlockListener extends MouseAdapter implements ActionListener{
         //行和列代表Block的位置
         //row & column is the position of the Block
         protected int row, column;
@@ -693,35 +802,36 @@ public class Main extends JFrame {
         //this func will be called when this Block is clicked.
         //turn this block and the 4 blocks around it
         public void actionPerformed(ActionEvent e) {
-            blocks[row][column].turn();
-            SafeTurn(row + 1, column);
-            SafeTurn(row - 1, column);
-            SafeTurn(row, column + 1);
-            SafeTurn(row, column - 1);
+            Click(row, column);
+            //刷新tips
+            if(isTipOn)    tipsOn();
+
+            //测试模式下，永不过关
+            if(levelMode == LevelMode.Test)     return;
             //判断是否可以过关
             for(int _column, _row = 0; _row < rowSize; _row ++) {
-                for (_column = 0; _column < coloumnSize; _column++) {
+                for (_column = 0; _column < columnSize; _column++) {
                     //不可过关
                     if(blocks[_row][_column].isOn())  return;
                 }
             }
 
             //可以过关
-            JOptionPane.showMessageDialog(mainPanel," W i n\n老司机过关", "Tip/温馨提示",
+            JOptionPane.showMessageDialog(mainPanel," W i n\n过关", "Tip/温馨提示",
                     JOptionPane.INFORMATION_MESSAGE, iconSuccess);
 
             switch (levelMode){
+                default:
+                    break;
                 case Increase:
                     level++;
-                    if(level * 2 > rowSize + coloumnSize){
+                    if(level * (level + 1) / 2 > rowSize * columnSize){
                         //此时弹出消息提示框，并自动按下 模式菜单
                         JOptionPane.showMessageDialog(mainPanel,"[Level Mode: Increase] accomplished", "",
                                 JOptionPane.INFORMATION_MESSAGE, iconSuccess);
                         jmMode.doClick();
                         return;
                     }
-                    setLevel(level);
-                    break;
                 case Fixed:
                     setLevel(level);
                     break;
@@ -732,14 +842,26 @@ public class Main extends JFrame {
 
         }
 
+        /*
+        //Test模式下，鼠标右键的监听如下
+        public void mouseClicked(MouseEvent e) {
+            //鼠标右键单击，只转换当前块
+            if(levelMode == LevelMode.Test && e.getButton() == MouseEvent.BUTTON3){
+                blocks[row][column].turn();
+            }
+        }
+         */
+
     }
 
     //由SizeChooser调用，以设置新大小
     void setNewSize(int _rowSize, int _coloumnSize){
         rowSize = _rowSize;
-        coloumnSize = _coloumnSize;
-        if(levelMode != LevelMode.Random){
+        columnSize = _coloumnSize;
+        if(levelMode == LevelMode.Fixed || levelMode == LevelMode.Increase){
             level = 1;
+            jlLevel.setText("Level:" + level);
+            System.out.println("Level:" + level);
         }
         remove(mainPanel);
         add(mainPanel = new MainPanel(), BorderLayout.CENTER);
@@ -764,7 +886,7 @@ public class Main extends JFrame {
         //展示大小选择窗口，如果做了更改，直接改动rowSize和columnSize，并重新实例化MainPanel。
         void showSizeChooser(){
             newRowSize = rowSize;
-            newColSize = coloumnSize;
+            newColSize = columnSize;
 
             newFrame.setLocationRelativeTo(mainPanel);
 //            newFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //会把全部退出
@@ -814,6 +936,7 @@ public class Main extends JFrame {
             jbOK.setPreferredSize(new Dimension(60, 30));
             jbOK.setForeground(FgC);
             jbOK.setBackground(BgC);
+            //点击ok的退出操作
             jbOK.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {

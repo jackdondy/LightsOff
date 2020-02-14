@@ -1,7 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8f94e211-47ba-480b-ab0b-3ecb6e996588" name="Default Changelist" comment="" />
+    <list default="true" id="8f94e211-47ba-480b-ab0b-3ecb6e996588" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VERSION" beforeDir="false" afterPath="$PROJECT_DIR$/VERSION" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Block$innerWindowListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Block$innerWindowListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Block.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Block.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$BgJMI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$BgJMI$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$BgJMI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$BgJMI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$BlockListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$BlockListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$FgJMI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$FgJMI$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$FgJMI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$FgJMI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$LevelMode.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$LevelMode.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$MainPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$MainPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$SizeChooser$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$SizeChooser$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$SizeChooser$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$SizeChooser$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$SizeChooser$settingButtonListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$SizeChooser$settingButtonListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$SizeChooser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$SizeChooser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LightsOff/META-INF/LightsOff.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LightsOff/Block.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LightsOff/Block.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LightsOff/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LightsOff/Main.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,6 +54,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1X9MDfbPtNhKLsqQQoGcemaYHaA" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -38,7 +67,10 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="settings.editor.selected.configurable" value="RemoteServers" />
+    <property name="project.structure.last.edited" value="Problems" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RunManager" selected="Application.Main (1)">
     <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -113,6 +145,17 @@
       <workItem from="1580972622760" duration="217000" />
       <workItem from="1580973525322" duration="11202000" />
       <workItem from="1580987646767" duration="670000" />
+      <workItem from="1581045222004" duration="1690000" />
+      <workItem from="1581051299076" duration="292000" />
+      <workItem from="1581159657778" duration="214000" />
+      <workItem from="1581218525626" duration="8278000" />
+      <workItem from="1581244078003" duration="400000" />
+      <workItem from="1581330059119" duration="2522000" />
+      <workItem from="1581426287219" duration="3504000" />
+      <workItem from="1581484638508" duration="1506000" />
+      <workItem from="1581512025155" duration="1474000" />
+      <workItem from="1581597153333" duration="14553000" />
+      <workItem from="1581647388292" duration="13352000" />
     </task>
     <servers />
   </component>
@@ -120,57 +163,65 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1580976308966">
+    <state x="233" y="3" key="#Notifications" timestamp="1581045388671">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1580976308966" />
-    <state x="333" y="81" width="528" height="581" key="#com.intellij.ide.util.MemberChooser" timestamp="1580885373165">
+    <state x="233" y="3" key="#Notifications/0.0.1280.680@0.0.1280.680" timestamp="1581045388671" />
+    <state x="101" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1581609089732">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="333" y="81" width="528" height="581" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1580885373165" />
-    <state width="1237" height="167" key="GridCell.Tab.0.bottom" timestamp="1580988319987">
+    <state x="101" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1581609089732" />
+    <state x="456" y="64" width="528" height="581" key="#com.intellij.ide.util.MemberChooser" timestamp="1581649710867">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="167" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1580988319987" />
-    <state width="1237" height="167" key="GridCell.Tab.0.center" timestamp="1580988319986">
+    <state x="456" y="64" width="528" height="581" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1581649710867" />
+    <state x="501" y="105" key="FileChooserDialogImpl" timestamp="1581159852059">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="167" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1580988319986" />
-    <state width="1237" height="167" key="GridCell.Tab.0.left" timestamp="1580988319986">
+    <state x="501" y="105" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1581159852059" />
+    <state width="1237" height="244" key="GridCell.Tab.0.bottom" timestamp="1581662054062">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="167" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1580988319986" />
-    <state width="1237" height="167" key="GridCell.Tab.0.right" timestamp="1580988319986">
+    <state width="1237" height="244" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1581662054062" />
+    <state width="1237" height="244" key="GridCell.Tab.0.center" timestamp="1581662054062">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="167" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1580988319986" />
-    <state width="1237" height="249" key="GridCell.Tab.1.bottom" timestamp="1580922183307">
+    <state width="1237" height="244" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1581662054062" />
+    <state width="1237" height="244" key="GridCell.Tab.0.left" timestamp="1581662054062">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="249" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1580922183307" />
-    <state width="1237" height="249" key="GridCell.Tab.1.center" timestamp="1580922183307">
+    <state width="1237" height="244" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1581662054062" />
+    <state width="1237" height="244" key="GridCell.Tab.0.right" timestamp="1581662054062">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="249" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1580922183307" />
-    <state width="1237" height="249" key="GridCell.Tab.1.left" timestamp="1580922183307">
+    <state width="1237" height="244" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1581662054062" />
+    <state width="1237" height="249" key="GridCell.Tab.1.bottom" timestamp="1581348315777">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="249" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1580922183307" />
-    <state width="1237" height="249" key="GridCell.Tab.1.right" timestamp="1580922183307">
+    <state width="1237" height="249" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1581348315777" />
+    <state width="1237" height="249" key="GridCell.Tab.1.center" timestamp="1581348315777">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="249" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1580922183307" />
-    <state x="144" y="0" key="SettingsEditor" timestamp="1580909014023">
+    <state width="1237" height="249" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1581348315777" />
+    <state width="1237" height="249" key="GridCell.Tab.1.left" timestamp="1581348315777">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="144" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1580909014023" />
-    <state x="337" y="169" key="com.intellij.ide.util.TipDialog" timestamp="1580987645765">
+    <state width="1237" height="249" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1581348315777" />
+    <state width="1237" height="249" key="GridCell.Tab.1.right" timestamp="1581348315777">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="337" y="169" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1580987645765" />
-    <state x="51" y="0" key="new project wizard" timestamp="1580548184385">
+    <state width="1237" height="249" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1581348315777" />
+    <state x="119" y="0" key="SettingsEditor" timestamp="1581051602798">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="51" y="0" key="new project wizard/0.0.1280.680@0.0.1280.680" timestamp="1580548184385" />
+    <state x="119" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1581051602798" />
+    <state x="337" y="169" key="com.intellij.ide.util.TipDialog" timestamp="1581647429829">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="337" y="169" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1581647429829" />
+    <state x="22" y="0" key="new project wizard" timestamp="1581159877166">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="22" y="0" key="new project wizard/0.0.1280.680@0.0.1280.680" timestamp="1581159877166" />
   </component>
 </project>
