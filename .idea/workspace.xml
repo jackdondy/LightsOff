@@ -3,15 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="8f94e211-47ba-480b-ab0b-3ecb6e996588" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/VERSION" beforeDir="false" afterPath="$PROJECT_DIR$/VERSION" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Block$innerWindowListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Block$innerWindowListener.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Block.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Block.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$3.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$5.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$BgJMI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$BgJMI$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$BgJMI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$BgJMI.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$BlockListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$BlockListener.class" afterDir="false" />
@@ -24,8 +21,6 @@
       <change beforePath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$SizeChooser$settingButtonListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$SizeChooser$settingButtonListener.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$SizeChooser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main$SizeChooser.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LightsOff/LightsOff/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LightsOff/META-INF/LightsOff.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LightsOff/Block.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LightsOff/Block.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LightsOff/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LightsOff/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -156,6 +151,7 @@
       <workItem from="1581512025155" duration="1474000" />
       <workItem from="1581597153333" duration="14553000" />
       <workItem from="1581647388292" duration="13352000" />
+      <workItem from="1581684745108" duration="1857000" />
     </task>
     <servers />
   </component>
@@ -179,22 +175,22 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="501" y="105" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1581159852059" />
-    <state width="1237" height="244" key="GridCell.Tab.0.bottom" timestamp="1581662054062">
+    <state width="1237" height="54" key="GridCell.Tab.0.bottom" timestamp="1581686624239">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="244" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1581662054062" />
-    <state width="1237" height="244" key="GridCell.Tab.0.center" timestamp="1581662054062">
+    <state width="1237" height="54" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1581686624239" />
+    <state width="1237" height="54" key="GridCell.Tab.0.center" timestamp="1581686624239">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="244" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1581662054062" />
-    <state width="1237" height="244" key="GridCell.Tab.0.left" timestamp="1581662054062">
+    <state width="1237" height="54" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1581686624239" />
+    <state width="1237" height="54" key="GridCell.Tab.0.left" timestamp="1581686624239">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="244" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1581662054062" />
-    <state width="1237" height="244" key="GridCell.Tab.0.right" timestamp="1581662054062">
+    <state width="1237" height="54" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1581686624239" />
+    <state width="1237" height="54" key="GridCell.Tab.0.right" timestamp="1581686624239">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="244" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1581662054062" />
+    <state width="1237" height="54" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1581686624239" />
     <state width="1237" height="249" key="GridCell.Tab.1.bottom" timestamp="1581348315777">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -215,10 +211,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="119" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1581051602798" />
-    <state x="337" y="169" key="com.intellij.ide.util.TipDialog" timestamp="1581647429829">
+    <state x="337" y="169" key="com.intellij.ide.util.TipDialog" timestamp="1581684745482">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="337" y="169" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1581647429829" />
+    <state x="337" y="169" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1581684745482" />
     <state x="22" y="0" key="new project wizard" timestamp="1581159877166">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

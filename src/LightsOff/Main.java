@@ -129,9 +129,8 @@ public class Main extends JFrame {
         setLevel(1);
 
         //将jm整个赋给jmb，把jmb整个加到工具栏
-        jtb.add(jmb);
-
         jmb.add(jm);
+        jtb.add(jmb);
 
         jm.setBorderPainted(false);
         jm.setIcon(iconMenu);
@@ -295,8 +294,6 @@ public class Main extends JFrame {
             }
         });
 
-
-
         //设置工具栏
         //“重玩”
         jbReplay.setPreferredSize(new Dimension(iconPreferSize, iconPreferSize));
@@ -405,6 +402,7 @@ public class Main extends JFrame {
             panelAuthor.setBorder(BorderFactory.createTitledBorder(lb, "Author/作者",
                     TitledBorder.LEADING, TitledBorder.TOP, null, BgC));
             panelAuthor.add(jta2 = new JTextArea("Jack Dondy, jackdondy9@gmail.com\n" +
+                    "You can find this program @ \"https://github.com/jackdondy/LightsOff\n\"" +
                     "Inspire by \"https://wiki.gnome.org/Apps/Lightsoff\""));
             jta2.setFont(defaultfont);
 
@@ -420,9 +418,6 @@ public class Main extends JFrame {
 //        jtb.setPreferredSize(new Dimension(500, 50));
         add(jtb, BorderLayout.NORTH);
 
-        setFgC(FgC);
-        setBgC(BgC);
-
         setIconImage(iconLogo.getImage());
         setTitle("Lights Off");
         setLocationRelativeTo(null);      //设置登陆框出现的位置，null表示出现在屏幕正中央
@@ -430,6 +425,9 @@ public class Main extends JFrame {
         pack();
         setVisible(true);
         mainPanel.repaint();
+
+        setFgC(FgC);
+        setBgC(BgC);
     }
 
     public static void main(String[] args){
@@ -440,8 +438,8 @@ public class Main extends JFrame {
     public void setFgC(Color color){
         FgC = color;
         setForeground(color);
-        jtb.setForeground(color);
-        jm.setForeground(color);
+//        jtb.setForeground(color);
+//        jm.setForeground(color);
         jmSize.setForeground(color);
         jmMode.setForeground(color);
         jbIncreaseMode.setForeground(color);
