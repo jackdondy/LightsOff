@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="LightsOff:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/LightsOff_jar</output-path>
+    <root id="archive" name="LightsOff.jar">
+      <element id="module-output" name="LightsOff" />
+    </root>
+  </artifact>
+</component>

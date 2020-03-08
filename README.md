@@ -4,6 +4,10 @@ LightsOff
 **Lights Off** is a casual puzzle game.
 You need to turn off **all** the lights of **n** rows and **m** columns in order to gain success.
 When you turn on/off a light, the lights **around** will also turn as a consequence.
+</br>
+![Example](./src/resources/example.png)
+</br>
+![Operate](./src/resources/shot.png)
 
 Launch
 ----------
