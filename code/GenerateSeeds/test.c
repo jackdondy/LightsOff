@@ -237,7 +237,10 @@ int deal(){
 
 int main(){
 	freopen("1.java", "w", stdout);
-	
+	ROW = COL = 5;
+	deal();
+	return 0;
+	 
 	int cycles[11][11] = {0};
 	for(ROW = 1; ROW < 11; ROW++){
 		for(COL = 1; COL < 11; COL++){
