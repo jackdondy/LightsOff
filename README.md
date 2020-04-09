@@ -1,5 +1,4 @@
-LightsOff
-----------
+# LightsOff
 
 **Lights Off** is a casual puzzle game.
 You need to turn off **all** the lights of **n** rows and **m** columns in order to gain success.
@@ -9,17 +8,19 @@ When you turn on/off a light, the lights **around** will also turn as a conseque
 </br>
 ![Operate](./code/src/resources/shot.png)
 
-Launch
-----------
-the encoding of all files is UTF-8.
-- JRE:11.0.5 
-- JRE:1.8.0 
+## Launch
 
-[GenerateSeeds](./code/GenerateSeeds)
-----------
+- You can download [LightsOff.jar](./LightsOff.jar) and double click it
+- **OR** Download files in [src](./code/src) and build a project.
+
+### JRE:11.0.5 
+### JRE:1.8.0 
+
+## [GenerateSeeds](./code/GenerateSeeds)
+
 In this catalogue are the files that generate the particular numbers in [Tip.java](./code/src/LightsOff/Tip.java) 
 
-Round-button
-----------
+## Round-button
+
 in [Block.java](./code/src/LightsOff/Block.java)
 
